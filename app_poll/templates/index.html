@@ -1,0 +1,45 @@
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{# Display a form #}
+<style>
+    * {
+        direction: rtl;
+    }
+</style>
+<form method="post" class="form">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      ثبت
+    </button>
+  {% endbuttons %}
+</form>
+
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">نام</th>
+            <th scope="col">درصد جانبازی</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for poll in poll_list %}
+        <tr>
+            <th scope="row">{{ poll.full_name }}</th>
+            <th scope="row">{{ poll.vaziat_isargari }}</th>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{# Read the documentation for more information #}
